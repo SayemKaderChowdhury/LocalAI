@@ -20,7 +20,7 @@ Thank you for contributing to LocalAI. We welcome contributions that maintain th
    - Model weights pulled: `ollama pull qwen3:4b` and `ollama pull nomic-embed-text`
 2. **Clone & Install**:
    ```bash
-   git clone [MY GITHUB REPO URL]
+   git clone https://github.com/SayemKaderChowdhury/LocalAI.git
    cd LocAI
    npm install
    ```
@@ -57,3 +57,4 @@ node scripts/measure-startup.js
 - **Formatting**: Tailwind utility classes ordered logically.
 - **Commits**: Clear, imperative commit messages (e.g. `fix: eliminate conhost popup in whisper runner`).
 - **Never Commit User Data**: Never commit `.sqlite` files, conversation history, user documents, or `.env` files.
+

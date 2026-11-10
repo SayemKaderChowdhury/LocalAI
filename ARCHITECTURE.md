@@ -179,3 +179,4 @@ All application state is kept inside a single dedicated Windows AppData director
 - **Typography**: Clean sans-serif system stack (`Inter`, `-apple-system`, `Segoe UI`) with monospace font for tokens/sec, code blocks, and model tags.
 - **Bento Grid**: Structured rectangular modular cards for system specs, workspaces, and settings with consistent 8px/12px padding.
 - **Rejected Aesthetics**: Purple gradients, glassmorphism blur, neumorphism, cyberpunk neon, floating emoji clutter.
+

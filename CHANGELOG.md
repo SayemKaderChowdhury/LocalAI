@@ -23,3 +23,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **Startup Latency**: Reduced boot time to interactive UI to **493 ms (< 0.5s)** by caching hardware detection in SQLite and moving Ollama health checks and model warmup to non-blocking background routines.
 - **Model Cold-Start Delay**: Added automatic background model warmup on boot with `keep_alive: "60m"`.
 - **Branding Cleanse**: Removed all builder templates, third-party watermarks, and non-neutral copy.
+

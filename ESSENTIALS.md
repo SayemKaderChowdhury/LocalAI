@@ -62,3 +62,4 @@
 2. **Acceptance Ledgers First**: No task is marked "done" without concrete verification evidence (test outputs, file citations, line numbers).
 3. **No File Deletions**: Preserve all project assets and code structure.
 4. **Zero Console Popups**: Every child process must execute silently with `{ windowsHide: true, stdio: 'pipe' }`.
+

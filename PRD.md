@@ -79,3 +79,4 @@ Modern cloud AI tools offer strong reasoning but require sending proprietary sou
 | **Startup Speed** | Process start to usable UI < 3.0 seconds (measured at 493 ms). | ✅ Verified (<0.5s) |
 | **Silent Spawns** | Packaged binary launches with exactly 0 terminal windows (`conhost.exe`/`cmd.exe`). | ✅ Verified (0) |
 | **Privacy Sandbox** | WebRequest blocks all outbound network calls outside `127.0.0.1` and `localhost`. | ✅ Verified |
+

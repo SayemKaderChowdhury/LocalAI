@@ -51,7 +51,7 @@
 ### Development Setup
 ```bash
 # Clone the repository
-git clone [MY GITHUB REPO URL]
+git clone https://github.com/SayemKaderChowdhury/LocalAI.git
 cd LocAI
 
 # Install dependencies
@@ -90,3 +90,4 @@ npm run package
 
 ## License
 MIT License. See [LICENSE](LICENSE) for details.
+

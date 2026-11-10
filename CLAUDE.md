@@ -60,3 +60,4 @@ npm run package
 - **Model**: A local Large Language Model weight file managed by Ollama (e.g., `qwen3:4b`, `qwen3.5:4b`).
 - **RAG**: Retrieval-Augmented Generation — finding relevant document chunks via cosine similarity and prepending them to the LLM system prompt with citations.
 - **Voice-to-Text**: Offline speech recognition transcribing local microphone audio into text via `faster-whisper`.
+
