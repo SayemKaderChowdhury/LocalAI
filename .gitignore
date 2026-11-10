@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+whisper-env/
+
+# Build & Distribution Artifacts
+dist/
+dist-electron/
+dist-renderer/
+release/
+
+# Logs
+*.log
+logs/
+
+# User Data & SQLite Databases (Never commit personal chats or files)
+*.sqlite
+*.sqlite-journal
+*.sqlite.bak
+*.db
+*.db-journal
+
+# Models & Large Audio/Video Binaries
+*.gguf
+*.bin
+*.wav
+*.mp3
+
+# Temporary Test Sandboxes
+test-sandbox-folder/
+test_tone_e2e.wav
+
+# Environment & Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+*.lnk

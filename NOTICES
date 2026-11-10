@@ -1,0 +1,45 @@
+# Open Source Software Notices
+
+LocalAI incorporates or interfaces with the following open source software components:
+
+---
+
+### Electron
+- **License**: MIT
+- **Copyright**: (c) Electron contributors, GitHub Inc.
+- **URL**: https://www.electronjs.org
+
+### React & React DOM
+- **License**: MIT
+- **Copyright**: (c) Meta Platforms, Inc. and affiliates.
+- **URL**: https://react.dev
+
+### Ollama
+- **License**: MIT
+- **Copyright**: (c) Ollama contributors
+- **URL**: https://ollama.com
+
+### faster-whisper
+- **License**: MIT
+- **Copyright**: (c) Guillaume Klein, SYSTRAN
+- **URL**: https://github.com/SYSTRAN/faster-whisper
+
+### nomic-embed-text
+- **License**: Apache-2.0
+- **Copyright**: (c) Nomic AI
+- **URL**: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
+
+### Lucide Icons
+- **License**: ISC
+- **Copyright**: (c) Lucide Contributors
+- **URL**: https://lucide.dev
+
+### Tailwind CSS
+- **License**: MIT
+- **Copyright**: (c) Tailwind Labs, Inc.
+- **URL**: https://tailwindcss.com
+
+### sql.js
+- **License**: MIT
+- **Copyright**: (c) Alon Zakai, sql.js contributors
+- **URL**: https://github.com/sql-js/sql.js

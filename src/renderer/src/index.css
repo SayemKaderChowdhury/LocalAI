@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-gray-900 dark:text-gray-100 bg-chatBgLight dark:bg-chatBgDark selection:bg-blue-500/20 selection:text-blue-900 dark:selection:text-blue-200;
+  }
+}
+
+/* Subtle, quiet scrollbars (Apple style) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300/80 dark:bg-gray-700/80 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* Swiss typography & markdown formatting */
+.prose {
+  color: inherit;
+}
+
+.prose pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.prose th, .prose td {
+  border: 1px solid rgba(156, 163, 175, 0.25);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.prose th {
+  background-color: rgba(156, 163, 175, 0.08);
+  font-weight: 600;
+}
+
+.prose blockquote {
+  border-left: 3px solid #3b82f6;
+  padding-left: 1rem;
+  margin-left: 0;
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.prose p {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.65;
+}
+
+.prose ul, .prose ol {
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Subtle blinking cursor */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-cursor {
+  animation: pulse-subtle 1.2s ease-in-out infinite;
+}

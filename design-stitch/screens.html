@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalAI — Redesigned Stitch Screens (Minimalism + Swiss + Bento)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvasLight: '#F9FAFB',
+            canvasDark: '#0F1012',
+            surfaceLight: '#FFFFFF',
+            surfaceDark: '#16171A',
+            sidebarLight: '#F3F4F6',
+            sidebarDark: '#121315',
+            borderLight: '#E5E7EB',
+            borderDark: '#26282D',
+            accent: '#2563EB',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-canvasDark text-gray-200 font-sans antialiased">
+
+  <!-- ========================================== -->
+  <!-- 1. SIDEBAR & CHAT SCREEN (SWISS + MINIMAL) -->
+  <!-- ========================================== -->
+  <div class="flex h-screen w-screen overflow-hidden">
+    <!-- Left Sidebar: 260px, Swiss layout, 1 primary action -->
+    <aside class="w-64 bg-sidebarDark border-r border-borderDark flex flex-col justify-between shrink-0 select-none">
+      <div class="flex flex-col h-full">
+        <!-- Top Workspace Switcher -->
+        <div class="p-3 border-b border-borderDark">
+          <button class="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-surfaceDark border border-borderDark hover:border-gray-600 transition text-left text-xs font-medium text-gray-200">
+            <div class="flex items-center gap-2 truncate">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
+              <span class="truncate">CalProof Startup</span>
+            </div>
+            <span class="text-gray-500 text-[10px]">▼</span>
+          </button>
+        </div>
+
+        <!-- Single Primary Action: New Chat -->
+        <div class="p-3 space-y-2">
+          <button class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs transition">
+            <span>+</span>
+            <span>New Chat</span>
+          </button>
+
+          <!-- Quiet Navigation Items -->
+          <nav class="space-y-0.5 text-xs">
+            <button class="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-gray-300 hover:bg-surfaceDark transition">
+              <span>📁</span>
+              <span>Workspaces</span>
+            </button>
+            <button class="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-gray-300 hover:bg-surfaceDark transition">
+              <span>📚</span>
+              <span>Library</span>
+            </button>
+            <button class="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-gray-300 hover:bg-surfaceDark transition">
+              <span>🔍</span>
+              <span>Search</span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- Chat History: Grouped by Today / Yesterday / This Week (Max 7 visible) -->
+        <div class="flex-1 overflow-y-auto px-3 py-2 space-y-4 text-xs">
+          <div>
+            <div class="text-[10px] uppercase font-semibold text-gray-500 tracking-wider px-2 mb-1">Today</div>
+            <div class="space-y-0.5">
+              <div class="px-2.5 py-1.5 rounded-lg bg-surfaceDark text-blue-400 font-medium truncate cursor-pointer">
+                Pitch deck financial review
+              </div>
+              <div class="px-2.5 py-1.5 rounded-lg text-gray-400 hover:bg-surfaceDark hover:text-gray-200 truncate cursor-pointer transition">
+                Contract clause analysis
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="text-[10px] uppercase font-semibold text-gray-500 tracking-wider px-2 mb-1">Yesterday</div>
+            <div class="space-y-0.5">
+              <div class="px-2.5 py-1.5 rounded-lg text-gray-400 hover:bg-surfaceDark hover:text-gray-200 truncate cursor-pointer transition">
+                Quarterly budget schema
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer: Offline status & Settings -->
+        <div class="p-3 border-t border-borderDark flex items-center justify-between text-xs text-gray-400">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="text-[11px] font-mono text-gray-400">qwen3:4b</span>
+          </div>
+          <button class="p-1 hover:text-white transition">⚙ Settings</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Chat Screen: One Screen, One Job -->
+    <main class="flex-1 flex flex-col h-full bg-canvasDark overflow-hidden relative">
+      <!-- Chat Header: Quiet, No Badge Clutter -->
+      <header class="h-12 border-b border-borderDark px-6 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-gray-400 font-medium">CalProof Startup /</span>
+          <span class="text-gray-100 font-medium">Pitch deck financial review</span>
+        </div>
+        <div class="flex items-center gap-3 text-xs text-gray-400">
+          <button class="hover:text-gray-200 transition">Export</button>
+          <button class="hover:text-gray-200 transition">•••</button>
+        </div>
+      </header>
+
+      <!-- Chat Thread Column: Centered Max-Width 768px -->
+      <div class="flex-1 overflow-y-auto px-4 py-8 flex justify-center">
+        <div class="w-full max-w-3xl space-y-6">
+          <!-- User Message -->
+          <div class="flex justify-end">
+            <div class="bg-surfaceDark border border-borderDark rounded-2xl px-4 py-3 max-w-[80%] text-sm text-gray-100">
+              Summarize our burn rate and runway from the financial model in the workspace.
+            </div>
+          </div>
+
+          <!-- Assistant Message -->
+          <div class="flex justify-start">
+            <div class="space-y-2 max-w-[90%]">
+              <div class="text-sm text-gray-200 leading-relaxed space-y-2">
+                <p>Based on <strong>Financial_Model_2026.xlsx</strong> uploaded in this Workspace:</p>
+                <ul class="list-disc pl-5 space-y-1 text-gray-300">
+                  <li><strong>Monthly Net Burn</strong>: $42,500</li>
+                  <li><strong>Current Cash Reserve</strong>: $610,000</li>
+                  <li><strong>Projected Runway</strong>: 14.3 months without additional financing.</li>
+                </ul>
+              </div>
+
+              <!-- Source Citation Card -->
+              <div class="p-2.5 rounded-xl bg-surfaceDark border border-borderDark text-xs text-gray-400 flex items-center justify-between">
+                <span>📄 Source: <code>Financial_Model_2026.xlsx, Sheet: Summary</code></span>
+                <span class="text-[11px] text-blue-400 cursor-pointer">View snippet</span>
+              </div>
+
+              <!-- Quiet Metadata: Model + tok/s + duration -->
+              <div class="text-[11px] font-mono text-gray-500 pt-1">
+                qwen3:4b · 36.4 tok/s · 1.8s · 100% on device
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Docked Input Box: Centered Max-Width 768px with Attach (+), Voice (mic), Send -->
+      <div class="p-4 flex justify-center border-t border-borderDark/40">
+        <div class="w-full max-w-3xl">
+          <div class="bg-surfaceDark border border-borderDark focus-within:border-gray-500 rounded-2xl p-2 transition shadow-lg flex flex-col gap-2">
+            <textarea rows="2" placeholder="Ask anything about this workspace..." class="w-full bg-transparent px-3 py-1 text-sm text-gray-100 placeholder-gray-500 focus:outline-none resize-none"></textarea>
+            <div class="flex items-center justify-between px-2 pt-1 border-t border-borderDark/30">
+              <div class="flex items-center gap-1">
+                <!-- Attach (+) -->
+                <button title="Attach file or folder" class="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800 transition">
+                  <span class="text-base font-semibold">+</span>
+                </button>
+                <!-- Voice (mic) -->
+                <button title="Voice input (Offline Whisper)" class="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800 transition">
+                  🎙
+                </button>
+              </div>
+              <!-- Send -->
+              <button class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium transition">
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
+
