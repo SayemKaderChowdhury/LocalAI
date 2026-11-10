@@ -12,6 +12,7 @@
     "dev:electron": "concurrently -k \"vite\" \"cross-env WAIT_ON_WEB=1 node scripts/dev.js\"",
     "test": "node scripts/test-unit.js",
     "test:e2e": "node scripts/run-e2e.js",
+    "typecheck": "tsc --noEmit && tsc --project tsconfig.electron.json --noEmit",
     "package": "npm run build && electron-builder --win"
   },
   "keywords": [

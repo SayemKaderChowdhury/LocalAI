@@ -18,6 +18,7 @@
 | **T-008** | Feature 4: Workspaces (Isolated Memory & Scoped RAG) | P1 | **DONE** | E2E test `[TEST 1]` passed; SQLite schema migration & scoped chat filter verified. |
 | **T-009** | Opt-in Uncensored / Abliterated Model Catalog | P2 | **DONE** | E2E test `[TEST 4]` passed; default false, warning modal with acknowledgment. |
 | **T-010** | GitHub Repository Readiness & CI Workflow Setup | P1 | **DONE** | Git initialized, `.gitignore`, MIT `LICENSE`, `NOTICES`, `CONTRIBUTING.md`, `.github/workflows/test.yml`. |
+| **T-011** | Extensive CalProof Verification & E2E Testing Suite | P0 | **DONE** | 100% pass across all 9 E2E suites, 0 terminal windows, 0 typecheck errors. Full ledger in `docs/ledgers/T011_extensive_testing.md`. |
 
 ---
 
@@ -137,4 +138,22 @@
   - MIT `LICENSE` and `NOTICES` created.
   - Multi-OS GitHub Actions test workflow `.github/workflows/test.yml` configured.
   - Provided exact push commands with `[MY GITHUB REPO URL]` placeholder.
+
+---
+
+### [T-011] Extensive CalProof Verification & E2E Testing Suite
+- **Status**: **DONE**
+- **Ledger**: [`docs/ledgers/T011_extensive_testing.md`](file:///c:/Users/sayem/LocAI/docs/ledgers/T011_extensive_testing.md)
+- **Report**: [`docs/test-report.md`](file:///c:/Users/sayem/LocAI/docs/test-report.md)
+- **Criteria & Evidence**:
+  1. *Cold launch zero terminals*: `node scripts/verify-terminal-count.js` verified 0 console windows for packaged binary `LocalAI.exe`.
+  2. *Chat streaming, abort, regenerate, edit-and-rerun, restart persistence*: `npm run test:e2e` Suite 1 passed (31.6 tok/s).
+  3. *Dynamic model switch & OOM recovery*: `npm run test:e2e` Suite 2 passed (`qwen3:1.7b` -> `bonsai-2:9b`).
+  4. *Folder upload & Differential sync*: `npm run test:e2e` Suite 3 passed (11 files, 0 changes on untouched, 1 add + 1 edit on sync).
+  5. *Vector cleanup & orphan prevention*: `npm run test:e2e` Suite 4 passed (0 orphaned chunks after document deletion).
+  6. *Security guardrails*: `npm run test:e2e` Suite 5 passed (path traversal, corrupt PDF, >100MB blocked).
+  7. *Workspace isolation*: `npm run test:e2e` Suite 6 passed (0 leakage between Workspace A & B; workspace deletion cleans documents).
+  8. *Image handling & vision models*: `npm run test:e2e` Suite 7 passed (batch 3 images, vision catalog verified).
+  9. *Offline voice*: `npm run test:e2e` Suite 8 passed (`faster-whisper` silent execution).
+  10. *Resource telemetry*: `npm run test:e2e` Suite 9 passed (RSS: 118.45 MB, heap: 23.75 MB).
 

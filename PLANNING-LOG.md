@@ -82,3 +82,4 @@
    - `ws://localhost:*`
 2. **Database Integrity**: Backed up before migrations (`localai.sqlite.bak`).
 3. **No External Telemetry**: Zero tracking pixels, Google Analytics, or remote error reporting packages.
+

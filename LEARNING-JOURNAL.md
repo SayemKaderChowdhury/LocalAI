@@ -25,3 +25,13 @@
 - 2026-11-09 | startup-lag | Decouple Ollama daemon verification and model warmup from `BrowserWindow` creation | Blocking `loadURL` / `loadFile` while polling Ollama stalled UI rendering; showing window on `ready-to-show` and checking daemon in background dropped cold boot to 493 ms (< 0.5s) | Maintain subtle connecting dot in sidebar while background check is resolving
 - 2026-11-09 | framework-decision | Retain Electron over migrating to Tauri v2 | Benchmark showed cold boot to interactive chat is 493 ms (well under the 3.0s ceiling); Tauri v2 would add Rust FFI and toolchain complexity without perceptible speed gain for the user | Re-evaluate only if idle memory consumption becomes a constraint on sub-8GB hardware
 - 2026-11-09 | branding-cleanse | Complete removal of builder templates and addition of native About tab | Eliminates third-party tool watermarks and establishes clean open-source product identity with MIT license | Ensure About dialog displays exact SQLite storage directory path for transparency
+
+---
+
+## 2026-11-10 — Extensive CalProof Verification & Testing Harness
+
+- 2026-11-10 | bug-workspace-scoping | Strict scoping for vector chunk queries in `getChunksForScope` | Unconditional inclusion of `global` chunks inside workspace queries leaked general documents into confidential workspaces and prevented clean verification of workspace deletion | Provide explicit `includeGlobal` flag defaulting to `false` for scoped workspaces
+- 2026-11-10 | bug-folder-sync | Per-file try/catch in differential sync `syncFolder` | A single malformed PDF or unreadable file halted the entire directory synchronization run; wrapping individual file indexing in error handlers allows differential sync to continue and log `skipped++` | Surface list of skipped files in the UI sync completion notification
+- 2026-11-10 | test-isolation | Isolated temporary database directory parameter for `LocalDatabase` | Testing against the shared user AppData directory caused cross-test data pollution and risked modifying user chat history | Always inject isolated test sandbox directory paths in automated test runners
+
+

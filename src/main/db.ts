@@ -10,8 +10,8 @@ export class LocalDatabase {
   private storageDir: string;
   private initialized = false;
 
-  constructor() {
-    this.storageDir = path.join(app.getPath('appData'), 'LocalAI');
+  constructor(customStorageDir?: string) {
+    this.storageDir = customStorageDir || path.join(app.getPath('appData'), 'LocalAI');
     if (!fs.existsSync(this.storageDir)) {
       fs.mkdirSync(this.storageDir, { recursive: true });
     }
@@ -39,7 +39,7 @@ export class LocalDatabase {
       }
     }
 
-    const SQL: SqlJsStatic = await initSqlJs(wasmBinary ? { wasmBinary } : {});
+    const SQL: SqlJsStatic = await initSqlJs(wasmBinary ? ({ wasmBinary } as any) : {});
 
     if (fs.existsSync(this.dbPath)) {
       try {
@@ -446,7 +446,7 @@ export class LocalDatabase {
     let sql = 'SELECT id, filename, file_type, file_size, created_at, chunk_count, scope, folder_path, file_hash, updated_at FROM documents';
     const params: (string | number)[] = [];
     if (scope && scope !== 'all') {
-      sql += ' WHERE scope = ? OR scope = "global"';
+      sql += ' WHERE scope = ?';
       params.push(scope);
     }
     sql += ' ORDER BY created_at DESC';
@@ -543,7 +543,7 @@ export class LocalDatabase {
     this.saveToDisk();
   }
 
-  public getChunksForScope(scope?: string): Array<{
+  public getChunksForScope(scope?: string, includeGlobal = false): Array<{
     id: string;
     document_id: string;
     filename: string;
@@ -559,8 +559,12 @@ export class LocalDatabase {
       JOIN documents d ON dc.document_id = d.id
     `;
     const params: string[] = [];
-    if (scope && scope !== 'global') {
-      sql += ' WHERE d.scope = "global" OR d.scope = ?';
+    if (scope && scope !== 'all') {
+      if (includeGlobal && scope !== 'global') {
+        sql += ' WHERE (d.scope = ? OR d.scope = "global")';
+      } else {
+        sql += ' WHERE d.scope = ?';
+      }
       params.push(scope);
     } else if (scope === 'global') {
       sql += ' WHERE d.scope = "global"';

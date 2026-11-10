@@ -448,7 +448,6 @@ export function setupIpcHandlers(
           timeout: 45000,
           windowsHide: true,
           stdio: ['ignore', 'pipe', 'pipe'],
-          shell: false,
         });
 
         try {

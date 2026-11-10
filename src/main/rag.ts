@@ -41,11 +41,24 @@ export class RagEngine {
   ): Promise<{ filename: string; fileType: string; fileSize: number; sections: Array<{ pageOrSection: string; text: string }> }> {
     const ext = path.extname(filePath).toLowerCase();
     const filename = path.basename(filePath);
-    const stats = fs.statSync(filePath);
-    const fileSize = stats.size;
 
     if (!this.isSupportedFile(filePath)) {
       throw new Error(`Unsupported file type '${ext}'. Supported formats: PDF, DOCX, TXT, MD, CSV, XLSX, PNG, JPG, WEBP.`);
+    }
+
+    const resolvedPath = path.resolve(filePath);
+    if (!fs.existsSync(resolvedPath)) {
+      throw new Error(`File does not exist: ${filePath}`);
+    }
+    const stats = fs.statSync(resolvedPath);
+    if (!stats.isFile()) {
+      throw new Error(`Path is not a regular file: ${filePath}`);
+    }
+
+    const fileSize = stats.size;
+    const maxSizeBytes = 100 * 1024 * 1024; // 100 MB safety limit
+    if (fileSize > maxSizeBytes) {
+      throw new Error(`File '${filename}' exceeds maximum allowed size of 100 MB for local indexing.`);
     }
 
     onProgress?.(`Reading ${filename}...`);
@@ -53,7 +66,7 @@ export class RagEngine {
     const sections: Array<{ pageOrSection: string; text: string }> = [];
 
     if (ext === '.pdf') {
-      const dataBuffer = fs.readFileSync(filePath);
+      const dataBuffer = fs.readFileSync(resolvedPath);
       let pageNum = 1;
       const options = {
         pagerender: function (pageData: any) {
@@ -81,13 +94,23 @@ export class RagEngine {
         await pdfParse(dataBuffer, options);
       } catch (pdfErr) {
         // Fallback
-        const data = await pdfParse(dataBuffer);
-        sections.push({ pageOrSection: 'p. 1', text: data.text });
+        try {
+          const data = await pdfParse(dataBuffer);
+          if (data && data.text) {
+            sections.push({ pageOrSection: 'p. 1', text: data.text });
+          }
+        } catch (fallbackErr: any) {
+          throw new Error(`Corrupt or unreadable PDF document: ${fallbackErr.message || 'Parser failed'}`);
+        }
       }
 
       if (!sections.length) {
-        const data = await pdfParse(dataBuffer);
-        sections.push({ pageOrSection: 'p. 1', text: data.text });
+        try {
+          const data = await pdfParse(dataBuffer);
+          if (data && data.text) {
+            sections.push({ pageOrSection: 'p. 1', text: data.text });
+          }
+        } catch {}
       }
     } else if (ext === '.docx') {
       const buffer = fs.readFileSync(filePath);
@@ -379,16 +402,26 @@ export class RagEngine {
 
       if (!existing) {
         // New file
-        onProgress?.(`Indexing new file: ${item.relativePath}...`, Math.round((i / scan.items.length) * 100));
-        await this.ingestDocument(item.path, scope, item.relativePath);
-        added++;
+        try {
+          onProgress?.(`Indexing new file: ${item.relativePath}...`, Math.round((i / scan.items.length) * 100));
+          await this.ingestDocument(item.path, scope, item.relativePath);
+          added++;
+        } catch (err: any) {
+          console.warn(`Skipping unreadable new file ${item.relativePath}:`, err.message);
+          skipped++;
+        }
       } else if (existing.file_hash !== currentHash) {
         // File modified!
-        onProgress?.(`Re-indexing changed file: ${item.relativePath}...`, Math.round((i / scan.items.length) * 100));
-        // Delete old doc
-        this.db.deleteDocument(existing.id);
-        await this.ingestDocument(item.path, scope, item.relativePath);
-        updated++;
+        try {
+          onProgress?.(`Re-indexing changed file: ${item.relativePath}...`, Math.round((i / scan.items.length) * 100));
+          // Delete old doc
+          this.db.deleteDocument(existing.id);
+          await this.ingestDocument(item.path, scope, item.relativePath);
+          updated++;
+        } catch (err: any) {
+          console.warn(`Skipping unreadable modified file ${item.relativePath}:`, err.message);
+          skipped++;
+        }
       }
     }
 

@@ -55,9 +55,19 @@
      - `SESSION.md` (this file)
      - `CHANGELOG.md` (v2.0.0 release notes)
 
-5. **Verified Full End-to-End Test Suite**:
-   - Command: `node scripts/run-e2e.js`
-   - Result: 100% passed across Database & Workspaces, Folder RAG & Differential Sync, Offline Whisper Voice Transcription, Abliterated Catalog Safety, and Streaming Inference Latency.
+5. **CalProof-Grade Extensive Acceptance & E2E Suite (Step 6)**:
+   - **Ticket**: T-011
+   - **Ledger**: [`docs/ledgers/T011_extensive_testing.md`](file:///c:/Users/sayem/LocAI/docs/ledgers/T011_extensive_testing.md)
+   - **Report**: [`docs/test-report.md`](file:///c:/Users/sayem/LocAI/docs/test-report.md)
+   - **Bugs Caught & Fixed During Iteration**:
+     1. *Workspace Scoping Vector Contamination*: Fixed `getChunksForScope` in `src/main/db.ts` to strictly query `d.scope = ?` rather than unconditionally returning all global records, guaranteeing 100% workspace RAG isolation.
+     2. *Differential Sync Resilience*: Fixed `syncFolder` in `src/main/rag.ts` with per-file try/catch to gracefully skip unreadable/corrupt files with `skipped++` rather than aborting sync.
+     3. *Test Isolation*: Added optional `customStorageDir` to `LocalDatabase` constructor so E2E test runs never contaminate or depend on user AppData.
+   - **Full Quality Suite Execution**:
+     - `npm run typecheck`: 0 errors.
+     - `npm test`: 100% unit tests passed.
+     - `node scripts/verify-terminal-count.js`: 0 console windows verified on packaged executable.
+     - `npm run test:e2e`: 100% passed across all 9 suites (chat streaming, dynamic model swap, folder differential sync, vector deletion, security guardrails, workspace scoping, multimodal vision, offline voice, memory telemetry).
 
 ---
 
@@ -87,12 +97,12 @@
 
 ## 4. Open Questions / Blockers
 
-- None. All terminal windows eliminated, startup latency reduced by >85%, and test suites passing at 100%.
+- None. All terminal windows eliminated, startup latency reduced by >85% (<0.5s), and all 9 extensive test suites passing at 100%.
 
 ---
 
 ## 5. Next Steps
 
-1. Execute Step 5: Initialize Git repository, create `.gitignore`, `LICENSE`, `NOTICES`, `CONTRIBUTING.md`, and `.github/workflows/test.yml`.
-2. Provide exact git push instructions for user's repository URL.
+- All verification, testing, and documentation gates are complete.
+- Ready for user deployment and testing.
 

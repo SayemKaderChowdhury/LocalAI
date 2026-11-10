@@ -37,3 +37,4 @@ Approved by: <fresh reviewer agent> | Date: | Verdict:
 SESSION.md updated: yes / no | LEARNING-JOURNAL.md updated: yes / no
 
 ## 9. Learning-journal entry (why, not what; copied to LEARNING-JOURNAL.md)
+

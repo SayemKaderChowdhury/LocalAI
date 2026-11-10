@@ -16,8 +16,8 @@ export class OllamaClient {
     return new Promise((resolve) => {
       exec(
         'ollama --version',
-        { windowsHide: true, stdio: 'pipe' },
-        (err, stdout, stderr) => {
+        { windowsHide: true },
+        (err: any, stdout: any, stderr: any) => {
           if (!err && stdout) {
             resolve({ installed: true, version: stdout.trim() });
           } else if (stderr && stderr.includes('version')) {
