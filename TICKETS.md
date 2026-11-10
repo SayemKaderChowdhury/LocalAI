@@ -21,6 +21,7 @@
 | **T-011** | Extensive CalProof Verification & E2E Testing Suite | P0 | **DONE** | 100% pass across all 9 E2E suites, 0 terminal windows, 0 typecheck errors. Full ledger in `docs/ledgers/T011_extensive_testing.md`. |
 | **T-012** | Fix Root Documentation Links & Add SmartScreen Guide in README | P1 | **DONE** | Relative paths updated to root; Windows SmartScreen bypass guide added to `README.md`. |
 | **T-013** | Replace Vulnerable `xlsx` with Zero-CVE `read-excel-file` & Set `qwen3.5:4b` Default | P1 | **DONE** | Replaced `xlsx` with `read-excel-file` in `src/main/rag.ts`; default model updated to multimodal `qwen3.5:4b`. |
+| **T-014** | Complete Standalone Acceptance Ledgers Suite (T01–T11) | P1 | **DONE** | Authored dedicated standalone ledger files in `docs/ledgers/` for every ticket following CalProof discipline. |
 
 ---
 
@@ -175,5 +176,14 @@
   1. *Replace `xlsx`*: Completely uninstalled `xlsx` (GHSA-4r6h-8v6p-xvw6, GHSA-5pgg-2g8v-p4x9) and implemented `read-excel-file` in `src/main/rag.ts`.
   2. *Typecheck & Tests*: `npm run typecheck` passed (0 errors); `npm test` and `npm run test:e2e` passed (100%).
   3. *Set multimodal `qwen3.5:4b` default*: Updated `src/main/hardware.ts`, `src/main/db.ts`, `src/main/index.ts`, `src/renderer/src/App.tsx`, and root docs to default to `qwen3.5:4b` for 16GB tier.
+
+---
+
+### [T-014] Complete Standalone Acceptance Ledgers Suite (T01–T11)
+- **Status**: **DONE**
+- **Criteria & Evidence**:
+  1. *Author standalone ledger files*: Created `docs/ledgers/T03_branding.md`, `T04_documentation.md`, `T05_voice_to_text.md`, `T06_folder_rag.md`, `T07_image_vision.md`, `T08_workspaces.md`, `T09_abliterated_models.md`, `T10_github_ci.md`.
+  2. *Mirror CalProof discipline*: Every ledger includes claims table, verbatim test commands and results, state changes reviewed, security notes, critic record, and learning journal entries.
+
 
 
