@@ -80,7 +80,7 @@ export function getHardwareSpecs(forceRefresh: boolean = false): HardwareSpecs {
 
   // Model tier determination
   let tier: HardwareSpecs['tier'] = '16gb_mid';
-  let recommendedModel = 'qwen3:4b';
+  let recommendedModel = 'qwen3.5:4b';
   let upgradeModel = 'qwen3:8b';
   let visionModel = 'qwen3.5:4b';
 
@@ -91,7 +91,7 @@ export function getHardwareSpecs(forceRefresh: boolean = false): HardwareSpecs {
     visionModel = 'gemma3:4b';
   } else if (totalRamGB <= 20 && vramGB < 12) {
     tier = '16gb_mid';
-    recommendedModel = 'qwen3:4b';
+    recommendedModel = 'qwen3.5:4b';
     upgradeModel = 'qwen3:8b';
     visionModel = 'qwen3.5:4b';
   } else if (totalRamGB >= 30 || vramGB >= 16) {
@@ -142,8 +142,8 @@ export const KNOWN_MODELS: ModelTierItem[] = [
     sizeGB: 2.5,
     ramNeededGB: 6.0,
     expectedSpeed: '25-40 tok/s',
-    tier: '16 GB RAM / Recommended Default',
-    description: 'Sweet spot of reasoning, coding, and speed for 16 GB PCs. Apache-2.0.',
+    tier: '16 GB RAM / Fast Text',
+    description: 'Sweet spot of reasoning, coding, and fast dense text inference. Apache-2.0.',
     isVision: false,
     isExperimental: false,
   },
@@ -154,7 +154,7 @@ export const KNOWN_MODELS: ModelTierItem[] = [
     sizeGB: 3.3,
     ramNeededGB: 7.0,
     expectedSpeed: '20-35 tok/s',
-    tier: '16 GB RAM / Vision',
+    tier: '16 GB RAM / Recommended Default (Vision)',
     description: 'Full image perception, chart analysis, OCR, and reasoning. Multimodal.',
     isVision: true,
     isExperimental: false,

@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS conversations (
   temperature REAL DEFAULT 0.7,
   context_length INTEGER DEFAULT 4096,
   max_tokens INTEGER DEFAULT 2048,
-  model TEXT DEFAULT 'qwen3:4b',
+  model TEXT DEFAULT 'qwen3.5:4b',
   workspace_id TEXT,
   FOREIGN KEY (workspace_id) REFERENCES workspaces(id) ON DELETE SET NULL
 );

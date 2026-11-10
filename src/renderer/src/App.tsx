@@ -43,7 +43,7 @@ export const App: React.FC = () => {
   const [installedModels, setInstalledModels] = useState<OllamaModel[]>([]);
   const [documents, setDocuments] = useState<DocumentItem[]>([]);
   const [settings, setSettings] = useState<AppSettings>({
-    activeModel: 'qwen3:4b',
+    activeModel: 'qwen3.5:4b',
     defaultPersona: 'General Assistant',
     defaultSystemPrompt:
       "You are an intelligent, helpful local AI running entirely privately on the user's PC. Answer concisely, accurately, and show steps for code.",
@@ -782,7 +782,7 @@ export const App: React.FC = () => {
         isOpen={oomState.isOpen}
         onClose={() => setOomState({ isOpen: false, failedModel: '' })}
         failedModel={oomState.failedModel}
-        recommendedModel={hardware?.recommendedModel || 'qwen3:4b'}
+        recommendedModel={hardware?.recommendedModel || 'qwen3.5:4b'}
         onSwitchModel={handleSelectModel}
       />
     </div>

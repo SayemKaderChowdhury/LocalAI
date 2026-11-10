@@ -19,6 +19,8 @@
 | **T-009** | Opt-in Uncensored / Abliterated Model Catalog | P2 | **DONE** | E2E test `[TEST 4]` passed; default false, warning modal with acknowledgment. |
 | **T-010** | GitHub Repository Readiness & CI Workflow Setup | P1 | **DONE** | Git initialized, `.gitignore`, MIT `LICENSE`, `NOTICES`, `CONTRIBUTING.md`, `.github/workflows/test.yml`. |
 | **T-011** | Extensive CalProof Verification & E2E Testing Suite | P0 | **DONE** | 100% pass across all 9 E2E suites, 0 terminal windows, 0 typecheck errors. Full ledger in `docs/ledgers/T011_extensive_testing.md`. |
+| **T-012** | Fix Root Documentation Links & Add SmartScreen Guide in README | P1 | **DONE** | Relative paths updated to root; Windows SmartScreen bypass guide added to `README.md`. |
+| **T-013** | Replace Vulnerable `xlsx` with Zero-CVE `read-excel-file` & Set `qwen3.5:4b` Default | P1 | **DONE** | Replaced `xlsx` with `read-excel-file` in `src/main/rag.ts`; default model updated to multimodal `qwen3.5:4b`. |
 
 ---
 
@@ -156,4 +158,22 @@
   8. *Image handling & vision models*: `npm run test:e2e` Suite 7 passed (batch 3 images, vision catalog verified).
   9. *Offline voice*: `npm run test:e2e` Suite 8 passed (`faster-whisper` silent execution).
   10. *Resource telemetry*: `npm run test:e2e` Suite 9 passed (RSS: 118.45 MB, heap: 23.75 MB).
+
+---
+
+### [T-012] Fix Root Documentation Links & Add SmartScreen Guide in README
+- **Status**: **DONE**
+- **Criteria & Evidence**:
+  1. *Fix broken relative paths*: `README.md` lines 77-83 updated from `docs/<FILE>.md` to `<FILE>.md` for root docs.
+  2. *SmartScreen bypass documentation*: Added step-by-step Windows Defender SmartScreen guidance under Option A in `README.md`.
+
+---
+
+### [T-013] Replace Vulnerable `xlsx` with Zero-CVE `read-excel-file` & Set `qwen3.5:4b` Default
+- **Status**: **DONE**
+- **Criteria & Evidence**:
+  1. *Replace `xlsx`*: Completely uninstalled `xlsx` (GHSA-4r6h-8v6p-xvw6, GHSA-5pgg-2g8v-p4x9) and implemented `read-excel-file` in `src/main/rag.ts`.
+  2. *Typecheck & Tests*: `npm run typecheck` passed (0 errors); `npm test` and `npm run test:e2e` passed (100%).
+  3. *Set multimodal `qwen3.5:4b` default*: Updated `src/main/hardware.ts`, `src/main/db.ts`, `src/main/index.ts`, `src/renderer/src/App.tsx`, and root docs to default to `qwen3.5:4b` for 16GB tier.
+
 

@@ -622,7 +622,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   <div>
                     <span className="text-gray-400 block font-mono">Active Model</span>
                     <span className="font-medium text-gray-800 dark:text-gray-200 font-mono">
-                      {settings.activeModel || 'qwen3:4b'}
+                      {settings.activeModel || 'qwen3.5:4b'}
                     </span>
                   </div>
                   <div>

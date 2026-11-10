@@ -22,7 +22,7 @@
 | Memory Tier | Recommended Model | Vision Model | High Performance Upgrade |
 |---|---|---|---|
 | **Entry (< 10 GB RAM)** | `qwen3:1.7b` | `gemma3:4b` | `qwen3:4b` |
-| **Mid (16 GB RAM)** | `qwen3:4b` *(Default)* | `qwen3.5:4b` | `qwen3:8b` |
+| **Mid (16 GB RAM)** | `qwen3.5:4b` *(Default & Vision)* | `qwen3.5:4b` | `qwen3:8b` |
 | **High (32 GB RAM)** | `qwen3:14b` | `qwen3.5:9b` | `qwen3:32b` |
 | **Studio (64 GB+ RAM)** | `qwen3:32b` | `qwen3.5:9b` | `mistral-small:24b` |
 

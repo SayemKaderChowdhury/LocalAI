@@ -135,3 +135,4 @@ SESSION.md updated: yes | LEARNING-JOURNAL.md updated: yes
 ## 9. Learning-journal entry
 - **Scoping in Vector Databases**: When querying scoped chunks (e.g. for workspaces), default queries must not silently inject global records unless explicitly requested, otherwise workspace isolation and orphan cleanup verifications will detect data contamination.
 - **Differential Sync Resilience**: File sync mechanisms must catch per-file ingestion errors individually so a single corrupt or locked file skips gracefully rather than terminating the entire folder sync operation.
+

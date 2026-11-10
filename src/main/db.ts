@@ -101,7 +101,7 @@ export class LocalDatabase {
         temperature REAL DEFAULT 0.7,
         context_length INTEGER DEFAULT 4096,
         max_tokens INTEGER DEFAULT 2048,
-        model TEXT DEFAULT 'qwen3:4b',
+        model TEXT DEFAULT 'qwen3.5:4b',
         workspace_id TEXT DEFAULT ''
       );
 
@@ -687,7 +687,7 @@ export class LocalDatabase {
 
   public getSettings(): AppSettings {
     const defaults: AppSettings = {
-      activeModel: 'qwen3:4b',
+      activeModel: 'qwen3.5:4b',
       defaultPersona: 'General Assistant',
       defaultSystemPrompt: "You are an intelligent, helpful local AI running entirely privately on the user's PC. Answer concisely, accurately, and show steps for code.",
       theme: 'dark',

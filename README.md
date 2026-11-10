@@ -38,17 +38,29 @@
 
 ## Quickstart & Installation (Windows)
 
-### Prerequisites
+### Option A: Install via Packaged Windows Installer
+1. Download `LocalAI Setup 2.0.0.exe` from GitHub Releases.
+2. Launch the installer.
+3. **Windows SmartScreen Prompt**: Because LocalAI is an independent open-source project without a paid corporate certificate authority signature, Windows Defender SmartScreen may display *"Windows protected your PC"*.
+   - Click **More info**.
+   - Click **Run anyway**.
+4. The setup installs LocalAI to `%LOCALAPPDATA%\Programs\LocalAI` and creates a desktop shortcut.
+
+---
+
+### Option B: Run from Source
+
+#### Prerequisites
 1. **Ollama**: Download and install from [ollama.com](https://ollama.com).
 2. **Pull Default Models**:
    ```bash
-   ollama pull qwen3:4b
+   ollama pull qwen3.5:4b
    ollama pull nomic-embed-text
    ```
 3. **Node.js**: v20 or newer.
 4. **Python** (for optional offline voice-to-text): Python 3.10+ with `faster-whisper`.
 
-### Development Setup
+#### Development Setup
 ```bash
 # Clone the repository
 git clone https://github.com/SayemKaderChowdhury/LocalAI.git
@@ -61,7 +73,7 @@ npm install
 npm run dev:electron
 ```
 
-### Build & Package for Windows
+#### Build & Package for Windows
 ```bash
 # Compile renderer and Electron main process
 npm run build
@@ -74,16 +86,17 @@ npm run package
 ---
 
 ## Documentation Index
-- [Architecture & Data Flow](docs/ARCHITECTURE.md)
-- [Project Requirements & Scope](docs/PRD.md)
-- [System Essentials & Guardrails](docs/ESSENTIALS.md)
-- [Engineering Discipline & Claude Guide](docs/CLAUDE.md)
-- [Design Tokens & UI System](docs/DESIGN.md)
-- [Tickets & Acceptance Ledgers](docs/TICKETS.md)
-- [Session History](docs/SESSION.md)
+- [Architecture & Data Flow](ARCHITECTURE.md)
+- [Project Requirements & Scope](PRD.md)
+- [System Essentials & Guardrails](ESSENTIALS.md)
+- [Engineering Discipline & Claude Guide](CLAUDE.md)
+- [Design Tokens & UI System](DESIGN.md)
+- [Tickets & Acceptance Ledgers](TICKETS.md)
+- [Session History](SESSION.md)
 - [Startup Timeline & Latency Benchmark](docs/startup-timeline.md)
 - [Terminal & Process Audit](docs/terminal-audit.md)
 - [Framework Decision Assessment](docs/framework-decision.md)
+- [Test & Telemetry Report](docs/test-report.md)
 - [Changelog](CHANGELOG.md)
 
 ---

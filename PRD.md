@@ -27,7 +27,7 @@ Modern cloud AI tools offer strong reasoning but require sending proprietary sou
 - **Streaming UI**: Real-time token streaming with tokens/sec speed and duration indicators.
 - **Rich Markdown**: Code syntax highlighting, tables, LaTeX formulas, bullet lists.
 - **Session Continuity**: Multi-turn conversation persistence in local SQLite.
-- **Hardware-Aware Tiering**: Automatic detection of CPU, physical RAM, GPU name, and VRAM with safe defaults (`qwen3:4b`).
+- **Hardware-Aware Tiering**: Automatic detection of CPU, physical RAM, GPU name, and VRAM with safe defaults (`qwen3.5:4b`).
 
 ### P1 — Local Document & Folder RAG (Retrieval-Augmented Generation)
 - **Multi-Format Ingestion**: Native extraction for PDF, DOCX, TXT, MD, CSV, XLSX, and images.

@@ -102,3 +102,4 @@ Executed across 9 distinct test suites covering all critical operational flows:
 - `npm test`: **100% unit tests passed** (model catalog, hardware tiers, sandbox rules).
 - `npm run test:e2e`: **100% acceptance tests passed** across all 9 suites.
 - `npm run build`: Clean production bundle in `dist-renderer` and `dist-electron`.
+

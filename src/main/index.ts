@@ -93,7 +93,7 @@ async function createWindow() {
       await ollama.startOllama();
     }
     const settings = db.getSettings();
-    const activeModel = settings?.activeModel || 'qwen3:4b';
+    const activeModel = settings?.activeModel || 'qwen3.5:4b';
     ollama.warmupModel(activeModel).catch((err) => {
       logger.warn('Initial model warmup notice:', err);
     });

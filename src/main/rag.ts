@@ -3,7 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 import pdfParse from 'pdf-parse';
 import mammoth from 'mammoth';
-import * as XLSX from 'xlsx';
+import readXlsxFile from 'read-excel-file/node';
 import { LocalDatabase } from './db';
 import { OllamaClient } from './ollama';
 import { DocumentItem, Citation, FolderScanResult, FolderScanItem, FolderIndexSummary } from '../shared/types';
@@ -134,21 +134,22 @@ export class RagEngine {
         });
       }
     } else if (ext === '.xlsx') {
-      const workbook = XLSX.readFile(filePath);
-      for (const sheetName of workbook.SheetNames) {
-        const worksheet = workbook.Sheets[sheetName];
-        const csv = XLSX.utils.sheet_to_csv(worksheet);
-        if (csv.trim()) {
-          const lines = csv.split('\n');
-          const header = lines[0] || '';
-          const batchSize = 30;
-          for (let i = 1; i < lines.length; i += batchSize) {
-            const batch = lines.slice(i, i + batchSize).join('\n');
-            sections.push({
-              pageOrSection: `Sheet: ${sheetName} (Rows ${i}-${Math.min(i + batchSize, lines.length)})`,
-              text: `Sheet: ${sheetName}\n${header}\n${batch}`,
-            });
-          }
+      const sheets = await readXlsxFile(resolvedPath);
+      for (const sheet of sheets) {
+        const sheetName = sheet.sheet;
+        const rows = sheet.data;
+        if (!rows || rows.length === 0) continue;
+        const header = rows[0].map((c) => (c !== null && c !== undefined ? String(c) : '')).join(',');
+        const batchSize = 30;
+        for (let i = 1; i < rows.length; i += batchSize) {
+          const batch = rows
+            .slice(i, i + batchSize)
+            .map((r) => r.map((c) => (c !== null && c !== undefined ? String(c) : '')).join(','))
+            .join('\n');
+          sections.push({
+            pageOrSection: `Sheet: ${sheetName} (Rows ${i}-${Math.min(i + batchSize, rows.length)})`,
+            text: `Sheet: ${sheetName}\n${header}\n${batch}`,
+          });
         }
       }
     } else if (ext === '.txt' || ext === '.md') {

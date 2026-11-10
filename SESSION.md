@@ -69,6 +69,14 @@
      - `node scripts/verify-terminal-count.js`: 0 console windows verified on packaged executable.
      - `npm run test:e2e`: 100% passed across all 9 suites (chat streaming, dynamic model swap, folder differential sync, vector deletion, security guardrails, workspace scoping, multimodal vision, offline voice, memory telemetry).
 
+6. **Dependency Sanitization & Default Model Upgrade (T-012, T-013)**:
+   - **Ticket**: T-012, T-013
+   - **Actions**:
+     - Fixed root documentation links in `README.md` and added Windows SmartScreen install steps.
+     - Uninstalled `xlsx` (GHSA-4r6h-8v6p-xvw6, GHSA-5pgg-2g8v-p4x9) and implemented zero-CVE `read-excel-file`.
+     - Promoted multimodal `qwen3.5:4b` to recommended default for 16GB tier across hardware detection, SQLite defaults, and UI wizards.
+   - **Verification**: `npm run typecheck` (0 errors), `npm test` (100%), `npm run test:e2e` (100%).
+
 ---
 
 ## 2. Builder Branding Removal Audit Ledger
@@ -92,6 +100,12 @@
    - *Reason*: Executing PowerShell CIM commands synchronously on every launch blocked the main thread and spawned transient console windows. Caching specs in SQLite `settings.hardware_cache` makes subsequent boots instantaneous (0 ms).
 3. **Decouple Ollama Daemon Verification from Window Paint (11/09/2026)**:
    - *Reason*: Waiting for Ollama's daemon loop (up to 8s) delayed window painting. Running health check and model warmup in the background allows the window to appear in < 400 ms.
+4. **Windows SmartScreen Open-Source Strategy (11/10/2026)**:
+   - *Reason*: As an independent local-first project without paid CA EV certificates, document Windows SmartScreen bypass ("More info" -> "Run anyway") explicitly in `README.md`.
+5. **Promote `qwen3.5:4b` as Recommended Default (11/10/2026)**:
+   - *Reason*: Provides native vision understanding (images, charts, screenshots) out of the box on 16GB tier without requiring a secondary model pull.
+6. **Replace `xlsx` with `read-excel-file` (11/10/2026)**:
+   - *Reason*: Completely eliminated SheetJS Prototype Pollution and ReDoS CVEs from runtime dependencies.
 
 ---
 

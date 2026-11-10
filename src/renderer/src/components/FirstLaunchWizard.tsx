@@ -47,7 +47,7 @@ export const FirstLaunchWizard: React.FC<FirstLaunchWizardProps> = ({
 
   if (!isOpen) return null;
 
-  const targetModel = hardware?.recommendedModel || 'qwen3:4b';
+  const targetModel = hardware?.recommendedModel || 'qwen3.5:4b';
   const isTargetInstalled = ollamaStatus.models.some((m) => m.name === targetModel);
   const isDownloading = pullProgress?.modelTag === targetModel;
 
